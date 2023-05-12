@@ -6,10 +6,10 @@ const NavBar = () => {
     const navItems =
         <>
             <li>
-                <a>Home</a>
+                <Link>Home</Link>
             </li>
             <li>
-                <a>pls</a>
+                <Link>About</Link>
             </li>
         </>
 
