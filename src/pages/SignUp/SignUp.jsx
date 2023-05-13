@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
 
-const Login = () => {
 
-    const handleLogin = event => {
+const SignUp = () => {
+
+    const handleSignUp = event => {
         // stop the reload
         event.preventDefault();
 
@@ -19,10 +20,20 @@ const Login = () => {
                     <div className="card-body">
                         <h1
                             className="text-3xl text-center font-bold">
-                            Login
+                            Sign Up
                         </h1>
                         {/* login form start */}
-                        <form onSubmit={handleLogin}>
+                        <form onSubmit={handleSignUp}>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span
+                                        className="label-text">
+                                        Name
+                                    </span>
+                                </label>
+                                <input type="text" name='name' placeholder="Name" className="input input-bordered" />
+                            </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span
@@ -30,16 +41,19 @@ const Login = () => {
                                         Email
                                     </span>
                                 </label>
-                                <input type="text" name='email' placeholder="email" className="input input-bordered" />
+                                <input type="text" name='email' placeholder="Email" className="input input-bordered" />
                             </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span
                                         className="label-text">
-                                        Password
+                                        confirm Password
                                     </span>
                                 </label>
-                                <input type="text" placeholder="password" name='password' className="input input-bordered" />
+
+                                <input type="text" placeholder="Confirm Password" name='password' className="input input-bordered" />
+                                
                                 <label className="label">
                                     <a
                                         href="#" className="label-text-alt link link-hover">
@@ -49,16 +63,16 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 {/* login submit btn */}
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                                <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
                         {/* login form end */}
                         <p className='my-4 text-center'>
-                            New to Cars Doctor
+                            Already Have an Account?
                             <Link
-                                to="/signup"
+                                to="/login"
                                 className='text-orange-600 font-bold'>
-                                Sign Up
+                                Login
                             </Link>
                         </p>
                     </div>
@@ -68,4 +82,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
