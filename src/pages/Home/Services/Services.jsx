@@ -14,6 +14,7 @@ const Services = () => {
 
     return (
         <div className="mt-4">
+            {/* service section */}
             <div className="text-center">
                 <h3
                     className="text-2xl font-bold text-orange-600">
