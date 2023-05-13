@@ -1,12 +1,30 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 const SignUp = () => {
 
+    const { createUser } = useContext(AuthContext);
+
     const handleSignUp = event => {
         // stop the reload
         event.preventDefault();
+
+        // get the data
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, email, password)
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error))
 
     }
 
@@ -52,8 +70,8 @@ const SignUp = () => {
                                     </span>
                                 </label>
 
-                                <input type="text" placeholder="Confirm Password" name='password' className="input input-bordered" />
-                                
+                                <input type="password" placeholder="Confirm Password" name='password' className="input input-bordered" />
+
                                 <label className="label">
                                     <a
                                         href="#" className="label-text-alt link link-hover">

@@ -1,12 +1,28 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext);
 
     const handleLogin = event => {
         // stop the reload
         event.preventDefault();
 
+        // get the data form input field for log in page
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -39,7 +55,7 @@ const Login = () => {
                                         Password
                                     </span>
                                 </label>
-                                <input type="text" placeholder="password" name='password' className="input input-bordered" />
+                                <input type="password" placeholder="password" name='password' className="input input-bordered" />
                                 <label className="label">
                                     <a
                                         href="#" className="label-text-alt link link-hover">
