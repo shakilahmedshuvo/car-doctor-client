@@ -10,7 +10,10 @@ const NavBar = () => {
     // handleLogOut function
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+                // jwt log function for remove the access token form the local storage
+                localStorage.removeItem('car-access-token');
+            })
             .catch(error => console.log(error))
     }
 

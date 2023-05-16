@@ -19,15 +19,35 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
         // user sign in function
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                // privet route use navigate
-                navigate(from, { replace: true })
+                const loggedUser = {
+                    email: user.email
+                }
+                // console.log(user);
+                console.log(loggedUser);
+
+                // jwt function use
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('jwt response', data);
+                        // warning: local storage is not the best (second best place) to store access token
+                        // set in the local storage
+                        localStorage.setItem('car-access-token', data.token);
+                        // privet route use navigate
+                        navigate(from, { replace: true })
+                    })
             })
             .catch(error => console.log(error));
     }
