@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -6,6 +6,10 @@ import { AuthContext } from '../../providers/AuthProvider';
 const Login = () => {
 
     const { signIn } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         // stop the reload
@@ -17,10 +21,13 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
 
+        // user sign in function
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                // privet route use navigate
+                navigate(from, { replace: true })
             })
             .catch(error => console.log(error));
     }
